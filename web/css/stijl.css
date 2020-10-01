@@ -1,0 +1,313 @@
+body {
+    overflow-x: hidden;
+
+    font-family: "Verdana", sans-serif;
+    font-size: 1rem;
+    background-color: #FFFACD;
+}
+
+body main{
+    line-height: 1.5rem;
+    margin-bottom: 100px;
+}  
+
+article h2{
+    display: block;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+article{
+    padding-left: 1rem;
+}
+
+
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin-left: 5px;
+    border-top:0.2rem solid #824203;
+    margin-top: 100px;
+    padding-bottom: 1rem;
+}
+
+th{
+    text-align: center;
+    padding-bottom: 0.5rem;
+}
+
+tbody{
+    padding-left: 5px;
+}
+
+table{
+    width: 100%;
+
+}
+
+main h2{
+    font-family: "Verdana", sans-serif;
+    padding: 1rem;
+    font-weight: bold;
+
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+header h1{
+    font-size: 1.3rem;
+    position: relative;
+    text-align: center;
+    margin-bottom: 1rem;
+    
+}
+
+
+header nav{
+    font-family: "Trebuchet MS", sans-serif;
+   
+    color: #444;
+    font-size: 40%;
+    line-height: 2rem;
+    
+}
+
+header .active{
+    background-color: sandybrown;
+}
+
+nav ul li{
+    list-style-type: none;
+    background-color: #FFDAB9;
+    text-align: center;
+}
+
+nav a{
+    font-size: 13px;
+    font-family: 'CaviarDreams';
+    font-weight: bold;
+    padding: 0.3rem;
+    text-decoration: none;
+    color: #8B4513;
+    display: block;
+    border: 1px solid #8B4513;
+  
+}
+
+nav a:hover{
+    background-color: #fff;
+    color: #444;
+}
+
+body article{
+    padding: 0.3rem;
+}
+
+
+
+
+
+footer ul li{
+    font-family: "Verdana", sans-serif;
+    font-size: 0.8rem;
+    line-height: 1.1rem;
+}
+
+
+
+section {
+    padding-top: 1rem ;
+}
+
+
+
+
+
+@media all and (min-width: 38rem) /*608px*/ {
+    
+
+    main {
+        padding-left: 0;
+    }
+
+    header h1{
+        justify-content: center;
+    }
+    
+   p{
+       width:85%;
+   }
+
+
+    
+    article {
+        text-align: left;
+        width: 350px;
+        margin-left: auto;
+    }
+
+
+    
+    body main{
+
+
+        margin-bottom: 100px;
+    }
+
+
+    footer {
+
+        margin-left: 5px;
+        border-top:0.2rem solid #824203;
+        margin-top: 100px;
+    }
+
+     article {
+        width: 100%;
+
+    }
+
+    header nav ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        
+    }
+    header nav{
+        background-color: #824203;
+    }
+
+   
+
+    nav a {
+        border: 5px solid #824203 ;
+    }
+
+
+
+
+
+
+
+}
+
+@media all and (min-width: 48rem) /*768px*/ {
+
+
+    
+
+     section {
+        text-align: left;
+        /*width: 550px;*/
+       padding-top: 1rem;
+    }
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        margin-left: 5px;
+        border-top:0.2rem solid #824203;
+
+
+
+    }
+
+
+
+
+
+
+
+
+}
+
+@media all and (min-width: 60rem) {
+    article {
+        text-align: left;
+
+    }
+
+    
+
+   section{
+        text-align: left;
+
+    }
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        margin-left: 5px;
+        border-top:0.2rem solid #824203;
+
+
+
+    }
+
+
+
+
+
+}
+
+@media all and (min-width: 75rem) /*1200px*/ {
+
+
+
+    footer {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        margin-left: 5px;
+        border-top:0.2rem solid #824203;
+    }
+
+    p{
+    width :100%;
+    }
+
+    section{
+        margin-top: 15px;
+    }
+
+
+
+
+
+}
