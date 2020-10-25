@@ -4,6 +4,9 @@ body {
     font-family: "Verdana", sans-serif;
     font-size: 1rem;
     background-color: #FFFACD;
+    max-width : 800px;
+    margin:auto;
+
 }
 
 body main{
@@ -41,6 +44,7 @@ th{
 
 tbody{
     padding-left: 5px;
+    text-align: center;
 }
 
 table{
@@ -52,6 +56,7 @@ main h2{
     font-family: "Verdana", sans-serif;
     padding: 1rem;
     font-weight: bold;
+    text-align: center;
 
 }
 
@@ -65,6 +70,19 @@ input[type=text], select, textarea {
     margin-bottom: 16px;
     resize: vertical;
 }
+
+input[type= number], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+
 
 input[type=submit] {
     background-color: #4CAF50;
