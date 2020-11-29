@@ -17,16 +17,34 @@ public class Pragrammadb {
         this.programmas.add(programma);
     }
 
+    public ArrayList<Programma>getProgrammasDag(String cookieDag){
+        ArrayList<Programma> lijst = new ArrayList<>();
+        for (Programma programma : programmas){
+            if (programma.getDag().equals(cookieDag) || programma.getDag().equals("Alles"))
+                lijst.add(programma);
+        }
+        return lijst;
+    }
+
     public ArrayList<Programma> getProgrammas(){
 
         return programmas;
     }
-    public int totaalUren(){
+    public int totaalUren(String cookieDag){
         int total = 0;
         for (Programma p : programmas) {
             total += p.getAantalUur();
         }
         return total;
+    }
+
+    public void update(String dag , String groepSpier, int AantalUur){
+        for (Programma p : programmas){
+            if (p.getDag().equals(dag)){
+                p.setGroepSpier(groepSpier);
+                p.setAantalUur(AantalUur);
+            }
+        }
     }
 
 
@@ -42,21 +60,24 @@ public class Pragrammadb {
         programmas.remove(teVerwijderen);
     }
 
-    public Object zoeken(String dag , String groepSpier){
-        Programma P = null;
-
-        for(Programma programma : programmas){
-            if (programma.getDag().equals(dag) && programma.getGroepSpier().equals(groepSpier)){
-                P = programma;
+    public Programma zoeken(String dag){
+        for (Programma programma : programmas){
+            if(programma.heeftDag(dag)){
+                return programma;
             }
         }
+        throw new DomainException("De dag is niet juist");
+    }
 
-        if (P == null){
-            return "Programma bestaat niet";
+    public ArrayList<String> zoekenn(String dag){
+        ArrayList<String> matches = new ArrayList<>();
+        for (Programma programma : programmas){
+            if (programma.heeftDag(dag)){
+                matches.add(dag);
+                return matches;
+            }
         }
-
-        return "Dag: " + P.getDag() + ",SpierGroep: " + P.getGroepSpier() + ", aantal uren: " + P.getAantalUur();
-
+        return null;
     }
 
 }

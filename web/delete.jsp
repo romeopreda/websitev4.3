@@ -27,13 +27,17 @@
     </nav>
 </header>
 <main>
-    <p>Ben je zeker dat je de <%=request.getParameter("dag") + " " + request.getParameter("groepspier")%> wilt verwijderen?</p>
+    <p>Ben je zeker dat je de ${param.dag} en ${param.groepspier} wilt verwijderen?</p>
 
     <form method="post">
-        <a href="Programma?command=delete&dag=<%=request.getParameter("dag")%>&groepspier=<%=request.getParameter("groepspier")%>">Ja, ik ben zeker</a>
+        <a href="Programma?command=delete&dag=${param.dag}&groepspier=${param.groepspier}">Ja, ik ben zeker</a>
         <a href="Programma?command=overzicht">Nee, ik ben niet zeker</a>
     </form>
 </main>
-
+<footer>
+    <ul>
+        <li>Voor meer vragen : predaromeo20@yahoo.com</li>
+    </ul>
+</footer>
 </body>
 </html>

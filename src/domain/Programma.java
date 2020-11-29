@@ -16,6 +16,9 @@ public class Programma {
 
     }
 
+    public Programma() {
+
+    }
 
 
     public static boolean isValidString(String input){
@@ -31,7 +34,7 @@ public class Programma {
         if(isValidString(dag)){
             this.dag = dag;
         }else{
-            throw new IllegalArgumentException("geen valide dag");
+            throw new DomainException("geen valide dag");
         }
     }
 
@@ -44,7 +47,7 @@ public class Programma {
         if (isValidString(groepSpier)){
             this.groepSpier=groepSpier;
         }else{
-            throw new IllegalArgumentException("geen valide groepspier");
+            throw new DomainException("geen valide groepspier");
         }
     }
 
@@ -53,16 +56,18 @@ public class Programma {
     }
 
     public static boolean isValidAantalUur(int Aantaluur){
-        return Aantaluur > 0;
+        return Aantaluur > 0 && Aantaluur <= 3;
     }
 
     public void setAantalUur(int Aantaluur){
         if(isValidAantalUur(Aantaluur)){
             this.AantalUur = Aantaluur;
         }else{
-            throw new IllegalArgumentException("geen valide aantaluur");
+            throw new DomainException("geen valide aantaluur");
         }
     }
 
-
+    public boolean heeftDag(String dag){
+        return dag.equals(this.getDag());
+    }
 }
