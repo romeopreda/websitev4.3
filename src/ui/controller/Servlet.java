@@ -201,8 +201,13 @@ public class Servlet extends HttpServlet {
         String dag = request.getParameter("dag");
 
         try{
+
             programma.setDag(dag);
+            if(!(dag.equalsIgnoreCase("Maandag")|| dag.equalsIgnoreCase("Dinsdag")|| dag.equalsIgnoreCase("Woensdag")|| dag.equalsIgnoreCase("Donderdag")|| dag.equalsIgnoreCase("Vrijdag")|| dag.equalsIgnoreCase("Zaterdag")|| dag.equalsIgnoreCase("Zondag"))){
+                throw new DomainException("Dag moet dag van de week zijn");
+            }
             request.setAttribute("dagPreviousValue", dag);
+
         }catch (DomainException exc){
             errors.add(exc.getMessage());
         }

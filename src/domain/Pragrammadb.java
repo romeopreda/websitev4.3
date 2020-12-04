@@ -17,11 +17,16 @@ public class Pragrammadb {
         this.programmas.add(programma);
     }
 
-    public ArrayList<Programma>getProgrammasDag(String cookieDag){
+    public ArrayList<Programma>getProgrammasDag(String dag) {
         ArrayList<Programma> lijst = new ArrayList<>();
-        for (Programma programma : programmas){
-            if (programma.getDag().equals(cookieDag) || programma.getDag().equals("Alles"))
+        if (dag.equalsIgnoreCase("Alles")){
+            return getProgrammas();
+        }
+        for (Programma programma : programmas) {
+            if (programma.getDag().equals(dag)) {
                 lijst.add(programma);
+            }
+
         }
         return lijst;
     }
@@ -30,9 +35,22 @@ public class Pragrammadb {
 
         return programmas;
     }
-    public int totaalUren(String cookieDag){
+    public int totaalUren(String dag){
         int total = 0;
+        if (dag.equalsIgnoreCase("Alles")){
+            return totaalUrenn();
+        }
         for (Programma p : programmas) {
+            if (p.getDag().equals(dag)) {
+                total += p.getAantalUur();
+            }
+        }
+        return total;
+    }
+
+    public int totaalUrenn(){
+        int total = 0;
+        for (Programma p : programmas){
             total += p.getAantalUur();
         }
         return total;
