@@ -16,20 +16,9 @@
     <meta name="viewport" content="width=device-width, intial-scale=1.0">
     <title>DagenToevoegen</title>
 </head>
-<body>
-
-<header>
-    <h1>Prgramma Fitness</h1>
-    <nav>
-        <ul>
-            <li><a href= "Programma?command=home">Home</a> </li>
-            <li><a href="DagenToevoegen.jsp">DagenToevoegen</a> </li>
-            <li><a href="Programma?command=overzicht">Overzicht</a> </li>
-            <li><a href="zoeken.jsp">Zoeken</a> </li>
-        </ul>
-    </nav>
-</header>
-
+<jsp:include page="header.jsp">
+    <jsp:param name="activeItem" value="DagenToevoegen"/>
+</jsp:include>
 <main>
     <h2>Dagen toevoegen</h2>
 
@@ -60,11 +49,6 @@
 </main>
 
 
-<footer>
-    <ul>
-        <li>Voor meer vragen : predaromeo20@yahoo.com</li>
-    </ul>
-</footer>
-
-</body>
-</html>
+<jsp:include page="footer.jsp">
+    <jsp:param name="" value=""/>
+</jsp:include>

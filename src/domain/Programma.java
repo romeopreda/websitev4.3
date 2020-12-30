@@ -8,7 +8,7 @@ public class Programma {
     private int AantalUur;
 
 
-    public Programma(String dag, String groepSpier ,  int AantalUur){
+    public Programma(String dag){
 
         setDag(dag);
         setAantalUur(AantalUur);
@@ -19,6 +19,9 @@ public class Programma {
     public Programma() {
 
     }
+
+
+
 
 
     public static boolean isValidString(String input){

@@ -24,7 +24,7 @@ public class DagenToevoegenTest {
     }
 
     @Test
-    public void test_form_is_goed_ingevuld(){
+    public void test_dag_groepspier_aantaluur_goed_ingevuld_bij_tovoegen_van_een_dag(){
         driver.get(url + "DagenToevoegen.jsp");
 
         WebElement dagInput = driver.findElement(By.id("dag"));

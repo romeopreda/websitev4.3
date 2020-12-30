@@ -18,22 +18,23 @@
     <meta name="viewport" content="width=device-width, intial-scale=1.0">
     <title>Overzicht</title>
 </head>
-<body>
-<header>
-    <h1>Prgramma Fitness</h1>
-    <nav>
-        <ul>
-            <li><a href= "Programma?command=home">Home</a> </li>
-            <li><a href="DagenToevoegen.jsp">DagenToevoegen</a> </li>
-            <li><a href="Programma?command=overzicht">Overzicht</a> </li>
-            <li><a href="zoeken.jsp">Zoeken</a> </li>
-        </ul>
-    </nav>
-</header>
-
+<jsp:include page="header.jsp">
+    <jsp:param name="activeItem" value="Overzicht"/>
+</jsp:include>
 
 <main>
     <h2>Overzicht van alle dagen</h2>
+    <th>
+
+        <a href="Programma?command=setCookieDag&cookieDag=Maandag">Maandag</a>
+        <a href="Programma?command=setCookieDag&cookieDag=Dinsdag">Dinsdag</a>
+        <a href="Programma?command=setCookieDag&cookieDag=Woensdag">Woensdag</a>
+        <a href="Programma?command=setCookieDag&cookieDag=Donderdag">Donderdag</a>
+        <a href="Programma?command=setCookieDag&cookieDag=Vrijdag">Vrijdag</a>
+        <a href="Programma?command=setCookieDag&cookieDag=Alles">Alles</a>
+
+
+    </th>
     <table>
         <tr>
             <th>Dag</th>
@@ -41,17 +42,6 @@
             <th>Aantal uur</th>
         </tr>
 
-        <th>
-
-                    <a href="Programma?command=setCookieDag&cookieDag=Maandag">Maandag</a>
-                    <a href="Programma?command=setCookieDag&cookieDag=Dinsdag">Dinsdag</a>
-                    <a href="Programma?command=setCookieDag&cookieDag=Woensdag">Woensdag</a>
-                    <a href="Programma?command=setCookieDag&cookieDag=Donderdag">Donderdag</a>
-                    <a href="Programma?command=setCookieDag&cookieDag=Vrijdag">Vrijdag</a>
-                    <a href="Programma?command=setCookieDag&cookieDag=Alles">Alles</a>
-
-
-        </th>
 
         <c:forEach var="programma" items="${programmas}">
         <tr>
@@ -60,6 +50,7 @@
             <th>${programma.getAantalUur()}</th>
             <td><a href="Programma?command=deleteConfirmation&dag=${programma.getDag()}&groepspier=${programma.getGroepSpier()}">Verwijder</a> </td>
             <td><a href="Programma?command=update&dag=${programma.getDag()}">Update</a> </td>
+            <td><a href="Programma?command=favorietlijst&dag=${programma.getDag()}">Favoriet</a></td>
         </tr>
 
         </c:forEach>
@@ -68,10 +59,6 @@
     </table>
     <section>${totaaluren}</section>
 </main>
-<footer>
-    <ul>
-        <li>Voor meer vragen : predaromeo20@yahoo.com</li>
-    </ul>
-</footer>
-</body>
-</html>
+<jsp:include page="footer.jsp">
+    <jsp:param name="" value=""/>
+</jsp:include>

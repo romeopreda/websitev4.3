@@ -14,24 +14,15 @@
     <meta name="viewport" content="width=device-width, intial-scale=1.0">
     <title>Update</title>
 </head>
-<body>
-<header>
-    <h1>Prgramma Fitness</h1>
-    <nav>
-        <ul>
-            <li><a href= "Programma?command=home">Home</a> </li>
-            <li><a href="DagenToevoegen.jsp">DagenToevoegen</a> </li>
-            <li><a href="Programma?command=overzicht">Overzicht</a> </li>
-            <li><a href="zoeken.jsp">Zoeken</a> </li>
-        </ul>
-    </nav>
-</header>
+<jsp:include page="header.jsp">
+    <jsp:param name="activeItem" value="index"/>
+</jsp:include>
 
 <main>
     <h2>Update je dag: ${param.dag}</h2>
 
     <div class="container">
-        <form method="post"  action="Programma?command=add" novalidate>
+        <form method="post"  action="Programma?command=updateProduct" novalidate>
             <p>Update de groep spier en aantaluuren</p>
             <p><label for="dag">Dag</label>
                 <input type="text" id="dag" name="dag" placeholder="Dag..." value="${param.dag}" required></p>
@@ -56,10 +47,6 @@
         </form>
     </div>
 </main>
-<footer>
-    <ul>
-        <li>Voor meer vragen : predaromeo20@yahoo.com</li>
-    </ul>
-</footer>
-</body>
-</html>
+<jsp:include page="footer.jsp">
+    <jsp:param name="" value=""/>
+</jsp:include>

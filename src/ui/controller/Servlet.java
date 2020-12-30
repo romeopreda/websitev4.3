@@ -7,12 +7,10 @@ import domain.Programma;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet( "/Programma")
 public class Servlet extends HttpServlet {
@@ -42,6 +40,18 @@ public class Servlet extends HttpServlet {
             case "overzicht":
                 destination = overzicht(request,response);
                 break;
+            case "verwijderFavorietLijst":
+                destination = verwijderFavorietLijst(request);
+                break;
+            case "favorietlijst":
+                destination = voegToeFavorietlijst(request,response);
+                break;
+            case "setCookieDagF":
+                destination = setFavorietlijstCookieDag(request,response);
+                break;
+            case "overviewF":
+                destination = overzichtF(request, response);
+                break;
             case "add":
                 destination = add(request,response);
                 break;
@@ -60,6 +70,9 @@ public class Servlet extends HttpServlet {
             case "update":
                 destination = "update.jsp";
                 break;
+            case "updateProduct":
+                destination = UpdateProduct(request,response);
+                break;
             case "setCookieDag":
                 destination = setCookieDag(request, response);
                 break;
@@ -71,6 +84,60 @@ public class Servlet extends HttpServlet {
         }
         RequestDispatcher view = request.getRequestDispatcher(destination);
         view.forward(request, response);
+    }
+
+    private String overzichtF(HttpServletRequest request, HttpServletResponse response){
+        Cookie favorietlijstCookie = getCookieWithKey(request, "favorietlijstCookie");
+        String c = favorietlijstCookie == null ? "alles" : favorietlijstCookie.getValue();
+        return overzichtF(request, response, c);
+    }
+
+    private  String overzichtF(HttpServletRequest request , HttpServletResponse response , String favorietlijstCookie){
+        HttpSession session = request.getSession();
+        ArrayList<Programma> lijst = (ArrayList<Programma>) session.getAttribute("lijst");
+        ArrayList<Programma> lijstDag = new ArrayList<>();
+
+        request.setAttribute("lijst", lijstDag);
+        return "favorietlijst.jsp";
+    }
+
+    private String setFavorietlijstCookieDag(HttpServletRequest request , HttpServletResponse response){
+        Cookie favorietlijstCookie = new Cookie("favorietlijstCookie" , request.getParameter("favorietlijstCookieDag"));
+        response.addCookie(favorietlijstCookie);
+        return overzichtF(request , response , request.getParameter("cookieDag"));
+    }
+
+    private String voegToeFavorietlijst(HttpServletRequest request , HttpServletResponse response){
+        Programma programma = db.zoeken(request.getParameter("dag"));
+        HttpSession session = request.getSession();
+
+
+        List<Programma> favorietlijst = (List<Programma>) session.getAttribute("lijst");
+        if (favorietlijst == null){
+            favorietlijst = new ArrayList<>();
+        }
+        if (!favorietlijst.contains(programma)){
+            favorietlijst.add(programma);
+
+        }
+
+        session.setAttribute("lijst", favorietlijst);
+        return overzicht(request,response);
+    }
+
+
+    private String verwijderFavorietLijst(HttpServletRequest request){
+
+        HttpSession session = request.getSession();
+
+        ArrayList<Programma> favorietlijst = (ArrayList<Programma>) session.getAttribute("lijst");
+
+        if (favorietlijst !=null){
+            favorietlijst.remove(db.zoeken(request.getParameter("dag")));
+            session.setAttribute("lijst", favorietlijst);
+            return "favorietlijst.jsp";
+        }
+        return "debug.jsp";
     }
 
 
@@ -179,21 +246,7 @@ public class Servlet extends HttpServlet {
 
 
 
-       /* String dag = request.getParameter("dag");
-        String groepSpier= request.getParameter("groepspier");
-        String aantalUur = request.getParameter("Aantaluur");
 
-        if (dag.trim().isEmpty() || groepSpier.trim().isEmpty() || aantalUur.trim().isEmpty()) {
-            String error = "U moet alle velden invullen";
-            request.setAttribute("error", error);
-            return "DagenToevoegen.jsp";
-
-        }else{
-            Programma programma = new Programma(dag,groepSpier,Integer.parseInt(aantalUur));
-            db.addProgramma(programma);
-            return overzicht(request,response);
-        }
-        */
 
     }
 

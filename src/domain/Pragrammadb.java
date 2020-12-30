@@ -9,7 +9,6 @@ public class Pragrammadb {
 
     public Pragrammadb(){
 
-
     }
 
     public void addProgramma(Programma programma){
@@ -23,6 +22,20 @@ public class Pragrammadb {
             return getProgrammas();
         }
         for (Programma programma : programmas) {
+            if (programma.getDag().equals(dag)) {
+                lijst.add(programma);
+            }
+
+        }
+        return lijst;
+    }
+
+    public ArrayList<Programma>getProgrammasDag(String dag, ArrayList<Programma> favoriet) {
+        ArrayList<Programma> lijst = new ArrayList<>();
+        if (dag.equalsIgnoreCase("Alles")){
+            return getProgrammas();
+        }
+        for (Programma programma : favoriet) {
             if (programma.getDag().equals(dag)) {
                 lijst.add(programma);
             }

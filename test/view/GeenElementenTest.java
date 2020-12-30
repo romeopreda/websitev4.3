@@ -25,7 +25,7 @@ public class GeenElementenTest {
     }
 
     @Test
-    public void test_form_is_zichtbaar_wanneer_geen_velden_zijn_ingevuld(){
+    public void test_form_is_zichtbaar_wanneer_geen_dag_groepspier_aantluur_ingevuld_zijn(){
         driver.get(url + "DagenToevoegen.jsp");
         WebElement dagInput = driver.findElement(By.id("dag"));
         dagInput.clear();
