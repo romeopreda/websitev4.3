@@ -24,7 +24,7 @@ public class CorecteDagZoeken {
     }
 
     @Test
-    public void test_dag_goed_ingevuld_bij_zoeken(){
+    public void test_dag_goed_ingevuld_bij_zoeken_ga_naar_gevonden(){
         driver.get(url + "zoeken.jsp");
 
         WebElement dagInput = driver.findElement(By.id("dag"));

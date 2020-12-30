@@ -71,7 +71,7 @@ public class Servlet extends HttpServlet {
                 destination = "update.jsp";
                 break;
             case "updateProduct":
-                destination = UpdateProduct(request,response);
+                destination = UpdateDag(request,response);
                 break;
             case "setCookieDag":
                 destination = setCookieDag(request, response);
@@ -141,7 +141,7 @@ public class Servlet extends HttpServlet {
     }
 
 
-    private String UpdateProduct(HttpServletRequest request , HttpServletResponse response){
+    private String UpdateDag(HttpServletRequest request , HttpServletResponse response){
         String dag = request.getParameter("dag");
         String groepSpier = request.getParameter("groepspier");
         String aantaluur = request.getParameter("Aantaluur");
@@ -272,6 +272,9 @@ public class Servlet extends HttpServlet {
 
         try {
             programma.setGroepSpier(groepSpier);
+            if (!(groepSpier.equalsIgnoreCase("Armen")|| groepSpier.equalsIgnoreCase("Bennen")||groepSpier.equalsIgnoreCase("Rug") ||groepSpier.equalsIgnoreCase("Schouders"))){
+                throw new DomainException("Moet een normale Spier Groep zijn");
+            }
             request.setAttribute("groepSpierPreviousValue", groepSpier);
         }catch (DomainException exc){
             errors.add(exc.getMessage());
@@ -282,6 +285,9 @@ public class Servlet extends HttpServlet {
         String aantalUur = request.getParameter("Aantaluur");
         try{
             programma.setAantalUur(Integer.parseInt(aantalUur));
+            if (!(aantalUur.equals("1") || aantalUur.equals("2")|| aantalUur.equals("3"))){
+                throw new DomainException("Aantaluuren mag minimum 1 zijn en maximum 3");
+            }
             request.setAttribute("AantalUurPreviousValue", aantalUur);
         }catch (NumberFormatException exc){
             errors.add("vul een geldige nummer in (boven 0)");
