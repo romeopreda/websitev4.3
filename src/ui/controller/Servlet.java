@@ -135,9 +135,9 @@ public class Servlet extends HttpServlet {
         if (favorietlijst !=null){
             favorietlijst.remove(db.zoeken(request.getParameter("dag")));
             session.setAttribute("lijst", favorietlijst);
-            return "favorietlijst.jsp";
+
         }
-        return "debug.jsp";
+        return "favorietlijst.jsp";
     }
 
 
