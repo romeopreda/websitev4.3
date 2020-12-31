@@ -15,7 +15,7 @@
 
             <li class="unlist" ${param.active eq "Zoeken" ? "id = activeItem" : ""}>
                 <a href="zoeken.jsp">Zoeken</a></li>
-            <li class="unlist" ${param.active eq "FavorietLijst" ? "id = activeItem" : ""}>
+            <li class="unlist" ${param.active eq "Zoeken" ? "id = activeItem" : ""}>
                 <a href="Programma?command=overviewF">Favoriet</a></li>
 
 

@@ -30,19 +30,7 @@ public class Pragrammadb {
         return lijst;
     }
 
-    public ArrayList<Programma>getProgrammasDag(String dag, ArrayList<Programma> favoriet) {
-        ArrayList<Programma> lijst = new ArrayList<>();
-        if (dag.equalsIgnoreCase("Alles")){
-            return getProgrammas();
-        }
-        for (Programma programma : favoriet) {
-            if (programma.getDag().equals(dag)) {
-                lijst.add(programma);
-            }
 
-        }
-        return lijst;
-    }
 
     public ArrayList<Programma> getProgrammas(){
 

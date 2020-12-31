@@ -66,7 +66,7 @@ public class Programma {
         if(isValidAantalUur(Aantaluur)){
             this.AantalUur = Aantaluur;
         }else{
-            throw new DomainException("geen valide aantaluur");
+            throw new DomainException("Uur moet tussen 1 en 3 zijn");
         }
     }
 

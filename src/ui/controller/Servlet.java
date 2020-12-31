@@ -71,7 +71,7 @@ public class Servlet extends HttpServlet {
                 destination = "update.jsp";
                 break;
             case "updateProduct":
-                destination = UpdateDag(request,response);
+                destination = UpdateProgramma(request,response);
                 break;
             case "setCookieDag":
                 destination = setCookieDag(request, response);
@@ -94,10 +94,24 @@ public class Servlet extends HttpServlet {
 
     private  String overzichtF(HttpServletRequest request , HttpServletResponse response , String favorietlijstCookie){
         HttpSession session = request.getSession();
-        ArrayList<Programma> lijst = (ArrayList<Programma>) session.getAttribute("lijst");
+        List<Programma> lijst = (List<Programma>) session.getAttribute("lijst");
         ArrayList<Programma> lijstDag = new ArrayList<>();
 
-        request.setAttribute("lijst", lijstDag);
+        if (!(lijst == null || lijst.isEmpty())){
+
+            if (!favorietlijstCookie.equalsIgnoreCase("alles")){
+                for (Programma p : lijst){
+
+                    if (p.getDag().equalsIgnoreCase(favorietlijstCookie)){
+                        lijstDag.add(p);
+                    }
+                }
+                request.setAttribute("lijst", lijstDag);
+
+            }
+        }
+
+
         return "favorietlijst.jsp";
     }
 
@@ -141,13 +155,33 @@ public class Servlet extends HttpServlet {
     }
 
 
-    private String UpdateDag(HttpServletRequest request , HttpServletResponse response){
+    private String UpdateProgramma(HttpServletRequest request , HttpServletResponse response){
         String dag = request.getParameter("dag");
         String groepSpier = request.getParameter("groepspier");
         String aantaluur = request.getParameter("Aantaluur");
         int Aantaluur = Integer.parseInt(aantaluur);
-        db.update(dag,groepSpier,Aantaluur);
-        return overzicht(request,response);
+
+
+        ArrayList<String> errors = new ArrayList<>();
+
+        Programma programma = new Programma();
+
+        setDag(programma,request,errors);
+        setGroepspier(programma,request,errors);
+        setAantalUur(programma,request,errors);
+
+
+        if (errors.size() == 0){
+            try {
+                db.update(dag,groepSpier,Aantaluur);
+                return overzicht(request,response);
+            }catch (IllegalArgumentException exc){
+                errors.add(exc.getMessage());
+            }
+        }
+
+        request.setAttribute("error",errors);
+        return "update.jsp";
 
     }
 

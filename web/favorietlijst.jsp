@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: romeo
@@ -55,7 +56,7 @@
                 <th>${programma.getDag()}</th>
                 <th>${programma.getGroepSpier()}</th>
                 <th>${programma.getAantalUur()}</th>
-
+                <td><a href="Programma?command=verwijderFavorietLijst&dag=${programma.getDag()}">Verwijder</a> </td>
             </tr>
 
         </c:forEach>
